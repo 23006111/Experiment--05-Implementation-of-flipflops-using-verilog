@@ -1,9 +1,14 @@
+## NAME:RAMYA P
+## REF NO:23006111
+
 # Experiment--05-Implementation-of-flipflops-using-verilog
-### AIM: To implement all the flipflops using verilog and validating their functionality using their functional tables
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
+### AIM:
+To implement all the flipflops using verilog and validating their functionality using their functional tables
+## EQUIPMENTS REQUIRED:
+HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
+ SOFTWARE REQUIRED:   Quartus prime
 ### THEORY 
-SR Flip-Flop
+### SR Flip-Flop
 SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
 
 ![image](https://user-images.githubusercontent.com/36288975/167910294-bb550548-b1dc-4cba-9044-31d9037d476b.png)
@@ -102,26 +107,89 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
+1.Using nand gates and wires construct SR flip flop.
+
+2.Repeat same steps to construct JK,D,T flipflops.
+
+3.Find RTL logic and timing diagram for all flipflops
 
 
 
 ### PROGRAM 
-/*
-Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
 
+## SR Flip-Flop:
+```
+module sr(S,R,clk,Q,Qbar);
+input S,R,clk;
+output reg Q;
+output reg Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge clk)
+begin
+Q=S|((~R)&Q);
+Qbar=R|((~S)&(Qbar));
+end
+endmodule
+```
 
+## JK Flip-Flop:
+```
+module jk(J,K,clk,Q,Qbar);
+input J,K,clk;
+output reg Q;
+output reg Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge clk)
+begin
+Q=(J&(~Q))|((~K)&Q);
+Qbar=((~J)&(Qbar))|K&(~Qbar);
+end
+endmodule
+```
 
+## D Flip-Flop
+```
+module d(d,clk,q,qbar);
+input d,clk;
+output q,qbar;
+reg q,qbar;
+always @(posedge clk)
+begin
+q=d;
+qbar=~q;
+end
+endmodule
+```
 
+## T Flip-Flop
+```
+module t(clk,T,q,qbar);
+input clk,T;
+output q,qbar;
+reg q,qbar;
+always @(posedge clk)
+begin
+q=(T&~q)|(~T&q);
+qbar=~q;
+end
+endmodule
+```
 
 
 ### RTL LOGIC FOR FLIPFLOPS 
+## SR Flip-Flop:
+![image](https://github.com/23006111/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145981696/839b1c30-6e7f-4e74-a81f-ab53fd9fb5a8)
 
+## JK Flip-Flop:
+![image](https://github.com/23006111/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145981696/36484c1a-cb50-4b62-aef7-3de456f7ebe4)
 
+## D Flip-Flop:
+![image](https://github.com/23006111/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145981696/8c4f21a2-7f98-4a34-b53d-1a43dce2698b)
 
+## T Flip-Flop:
+![image](https://github.com/23006111/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145981696/097f5e79-80dd-47fe-9afd-bead24e460c5)
 
 
 
@@ -129,6 +197,18 @@ RegisterNumber:
 
 
 ### TIMING DIGRAMS FOR FLIP FLOPS 
+## SR Flip-Flop:
+![image](https://github.com/23006111/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145981696/2f38b1d1-30e1-4a5b-b979-7b83b470d289)
+## JK Flip-Flop:
+![image](https://github.com/23006111/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145981696/82780b78-aa9a-45d4-9d35-9df5c9bdd98d)
+## D Flip-Flop:
+![image](https://github.com/23006111/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145981696/c870ebb9-d94b-4d70-9890-481055ce9a84)
+## T Flip-Flop:
+![image](https://github.com/23006111/Experiment--05-Implementation-of-flipflops-using-verilog/assets/145981696/b469d95f-8c79-408e-b9a8-e1a71d750b6b)
+
+
+
+
 
 
 
